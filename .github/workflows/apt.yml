@@ -16,6 +16,9 @@ jobs:
       - name: Clone source
         uses: actions/checkout@v3
 
+      - name: Pull repo
+        run: sudo git pull
+
       - name: Cài reprepro
         run: sudo apt-get update && sudo apt-get install -y reprepro
 
