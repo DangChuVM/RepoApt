@@ -1,36 +1,38 @@
 # yaml
-
-name: Update APT Repo
+name: APT Repo Auto Update
 
 on:
   push:
     paths:
-      - 'debs/**'        # Chạy khi có thay đổi trong thư mục debs/
-      - 'conf/**'        # Hoặc file cấu hình thay đổi
+      - 'debs/**'
+      - 'conf/**'
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Clone source
         uses: actions/checkout@v3
 
-      - name: Cài đặt reprepro
+      - name: Cài reprepro
         run: sudo apt-get update && sudo apt-get install -y reprepro
 
-      - name: Xoá repo cũ (nếu có)
+      - name: Xóa repo cũ (nếu có)
         run: rm -rf dists pool
 
-      - name: Cập nhật repo APT từ debs/
+      - name: Build APT repo từ debs/
         run: |
           mkdir -p dists pool
-          for file in debs/*.deb; do
-            reprepro -b . includedeb stable "$file"
+          for deb in debs/*.deb; do
+            reprepro -b . includedeb stable "$deb"
           done
 
-      - name: Push APT repo đã cập nhật
+      - name: Commit & Push repo đã cập nhật
         run: |
-          git add dists pool
-          git commit -m "Update APT repo" || echo "No changes"
+          git config user.name "DangChuVM"
+          git config user.email "akirahung905@gmail.com"
+          git add dists pool || true
+          git commit -m "Update APT repo tự động" || echo "Không có thay đổi"
           git push
