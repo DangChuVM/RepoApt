@@ -1,0 +1,58 @@
+Package: nano
+Version: 8.3-1
+Architecture: arm64
+Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Installed-Size: 916
+Depends: libc6 (>= 2.38), libncursesw6 (>= 6), libtinfo6 (>= 6)
+Suggests: hunspell
+Conflicts: pico
+Breaks: nano-tiny (<< 2.8.6-2)
+Replaces: nano-tiny (<< 2.8.6-2), pico
+Homepage: https://www.nano-editor.org/
+Priority: important
+Section: editors
+Filename: pool/main/n/nano/nano_8.3-1_arm64.deb
+Size: 289196
+SHA256: 9e0e9d3d531a96ed7a462c35c2281e54fc90da8039e38daf70fbf9f1819bd5f3
+SHA1: e63a15fc70105de6097f5f46139104f419bc8ba3
+MD5sum: d27f213c75cb4c18b356a63fa00e221b
+Description: small, friendly text editor inspired by Pico
+ GNU nano is an easy-to-use text editor originally designed as a replacement
+ for Pico, the ncurses-based editor from the non-free mailer package Pine
+ (itself now available under the Apache License as Alpine).
+ .
+ However, GNU nano also implements many features missing in Pico, including:
+  - undo/redo
+  - line numbering
+  - syntax coloring
+  - soft-wrapping of overlong lines
+  - selecting text by holding Shift
+  - interactive search and replace (with regular expression support)
+  - a go-to line (and column) command
+  - support for multiple file buffers
+  - auto-indentation
+  - tab completion of filenames and search terms
+  - toggling features while running
+  - and full internationalization support
+ .
+ (Repackaged on Sat, 03 May 2025 18:27:44 +0700 by dpkg-repack.)
+ .
+ (Repackaged on Sun, 11 May 2025 20:00:23 +0700 by dpkg-repack.)
+
+Package: repo-key
+Version: 1.0.3
+Architecture: all
+Maintainer: DangChuVM <akirahung905@gmail.com>
+Priority: required
+Section: admin
+Filename: pool/main/r/repo-key/repo-key_1.0.3_all.deb
+Size: 12080
+SHA256: 64a7902c7010b46832fe269f10f5a44141688cfd7eb39c8e82e44c9f1d055004
+SHA1: 8cdc96821268725d69ef8af21aa9183964b21722
+MD5sum: e162bb0d637192d7dbdff6ab3fdc6a85
+Description: RePo key DangChuVM
+ .
+ (Repackaged on Mon, 28 Apr 2025 17:59:09 +0000 by dpkg-repack.)
+ .
+ (Repackaged on Fri, 02 May 2025 20:14:03 +0700 by dpkg-repack.)
+

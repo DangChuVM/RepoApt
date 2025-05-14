@@ -1,0 +1,17 @@
+Suite: stable
+Codename: stable
+Date: Wed, 14 May 2025 04:13:58 UTC
+Architectures: arm64
+Components: main
+MD5Sum:
+ 82eb140d640b46bab7c3622fb6ef03a0 2038 main/binary-arm64/Packages
+ b4bea586214ca224cf0330642b7e7d8b 1140 main/binary-arm64/Packages.gz
+ 5498dbe77aa0dcb78c11973ce245ab7b 52 main/binary-arm64/Release
+SHA1:
+ 4cad562890ec12c097ed0fcda647139a218fb48c 2038 main/binary-arm64/Packages
+ 6ccdf3961386c8a0d86c3f902811c2ea64666b42 1140 main/binary-arm64/Packages.gz
+ 412007f10501e71d820922a3c7024b053e5d6c65 52 main/binary-arm64/Release
+SHA256:
+ 0904f0d2b31e1b21b3f38b190ef556ab14d615d2a264772fbb1764e2eb7bea7f 2038 main/binary-arm64/Packages
+ 8b607ecfe9608c25e995653f9535a6afa94c47bb418ad3e2300a253a36b40433 1140 main/binary-arm64/Packages.gz
+ e14031805a3100c88e2201a2b54df09cead928dbb722b9562f7a0b122256f016 52 main/binary-arm64/Release
