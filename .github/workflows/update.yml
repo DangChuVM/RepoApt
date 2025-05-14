@@ -1,0 +1,38 @@
+# yaml
+
+name: Update APT Repo
+
+on:
+  push:
+    paths:
+      - 'debs/**'        # Chạy khi có thay đổi trong thư mục debs/
+      - 'conf/**'        # Hoặc file cấu hình thay đổi
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Cài đặt reprepro
+        run: sudo apt-get update && sudo apt-get install -y reprepro
+
+      - name: Xoá repo cũ (nếu có)
+        run: rm -rf dists pool
+
+      - name: Cập nhật repo APT từ debs/
+        run: |
+          mkdir -p dists pool
+          for file in debs/*.deb; do
+            reprepro -b . includedeb stable "$file"
+          done
+
+      - name: Push APT repo đã cập nhật
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add dists pool
+          git commit -m "Update APT repo" || echo "No changes"
+          git push
