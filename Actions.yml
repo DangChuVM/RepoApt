@@ -1,2 +1,0 @@
-- name: Update APT repo
-  uses: arkane-systems/apt-repo-update@v1.1
