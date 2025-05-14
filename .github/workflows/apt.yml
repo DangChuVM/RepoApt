@@ -36,3 +36,6 @@ jobs:
           git add dists pool || true
           git commit -m "Update APT repo tự động" || echo "Không có thay đổi"
           git push
+      - name: Ngoài lề
+        run: |
+          cp /etc/apt/apt-mirrors.txt .
