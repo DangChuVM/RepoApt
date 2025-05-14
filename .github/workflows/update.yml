@@ -31,8 +31,6 @@ jobs:
 
       - name: Push APT repo đã cập nhật
         run: |
-          git config --global user.name "github-actions"
-          git config --global user.email "actions@github.com"
           git add dists pool
           git commit -m "Update APT repo" || echo "No changes"
           git push
