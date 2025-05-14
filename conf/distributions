@@ -1,0 +1,5 @@
+Codename: stable
+Suite: stable
+Components: main
+Architectures: arm64
+SignWith: no
