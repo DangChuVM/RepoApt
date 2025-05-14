@@ -1,0 +1,2 @@
+- name: Create APT repository
+  uses: morph027/apt-repo-action@v3.6
