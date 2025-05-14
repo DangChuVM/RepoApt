@@ -1,0 +1,62 @@
+name: APT Repo Auto Update
+
+on:
+  push:
+    paths:
+      - 'debs/**'
+      - 'conf/**'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone source
+        uses: actions/checkout@v3
+
+      - name: Pull latest changes from repo
+        run: |
+          git fetch --all
+          git reset --hard origin/main  # Điều này sẽ đảm bảo bạn có được bản sao mới nhất từ repo
+
+      - name: Cài reprepro và GPG
+        run: |
+          sudo apt-get update -y && sudo apt-get install -y reprepro gnupg
+
+      - name: Kiểm tra và xóa repo cũ (nếu có)
+        run: |
+          if [ -d "dists" ] || [ -d "pool" ] || [ -d "db" ]; then
+            echo "Xóa repo cũ và db..."
+            rm -rf dists pool db
+          else
+            echo "Không tìm thấy repo cũ hoặc db để xóa."
+          fi
+
+      - name: Import GPG key
+        run: |
+          echo "$GPG_PRIVATE_KEY" | gpg --batch --import
+        env:
+          GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+
+      - name: Build APT repo từ debs/
+        run: |
+          mkdir -p dists pool
+          echo "Đang thêm các package deb vào repo..."
+          for deb in debs/*.deb; do
+            echo "Đang xử lý $deb"
+            reprepro -b . includedeb stable "$deb" || echo "Lỗi khi thêm package: $deb"
+          done
+
+      - name: Ký repository với GPG
+        run: |
+          reprepro -b . export
+          echo "Đã ký repo với GPG"
+
+      - name: Commit & Push repo đã cập nhật
+        run: |
+          git config user.name "DangChuVM"
+          git config user.email "akirahung905@gmail.com"
+          git add dists pool || echo "Không có thay đổi để thêm"
+          git commit -m "Update APT repo tự động" || echo "Không có thay đổi để commit"
+          git push || echo "Lỗi khi push"
